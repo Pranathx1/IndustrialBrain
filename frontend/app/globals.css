@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/*
+  IndustrialBrain AI — Design Token System
+  ------------------------------------------------------------------
+  Dark, instrument-panel aesthetic for an industrial intelligence
+  platform. Tokens are defined once here and consumed via Tailwind
+  v4's CSS-first @theme directive — no separate tailwind.config.js.
+*/
+@theme {
+  /* Surfaces */
+  --color-base: #0a0e14;
+  --color-base-raised: #0d1119;
+  --color-surface: #12161f;
+  --color-surface-hover: #161b26;
+  --color-surface-glass: rgb(18 22 31 / 72%);
+  --color-border: rgb(255 255 255 / 7%);
+  --color-border-strong: rgb(255 255 255 / 14%);
+
+  /* Text */
+  --color-text-primary: #e8eaed;
+  --color-text-secondary: #9aa4b2;
+  --color-text-muted: #5c6472;
+
+  /* Signature accent — restrained steel-indigo, not stock SaaS blue/purple */
+  --color-accent: #5b7fff;
+  --color-accent-soft: rgb(91 127 255 / 12%);
+  --color-accent-strong: #7b9aff;
+
+  /* Status — desaturated, instrument-panel rather than candy */
+  --color-success: #34d399;
+  --color-success-soft: rgb(52 211 153 / 12%);
+  --color-warning: #f5a623;
+  --color-warning-soft: rgb(245 166 35 / 12%);
+  --color-critical: #f2545b;
+  --color-critical-soft: rgb(242 84 91 / 12%);
+  --color-info: #5b7fff;
+
+  /* Typography — wired to next/font variables set on <html> in layout.tsx */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+
+  /* Radii */
+  --radius-card: 14px;
+  --radius-control: 8px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 40%), 0 12px 32px -12px rgb(0 0 0 / 60%);
+  --shadow-glow-accent: 0 0 0 1px rgb(91 127 255 / 15%), 0 0 24px rgb(91 127 255 / 8%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Faint blueprint grid — an authentic nod to P&ID drawings, not decoration */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 2.5%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 2.5%) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-text-primary);
+  }
+
+  /* Scrollbars tuned to the dark surface, not the browser default */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(255 255 255 / 8%);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(255 255 255 / 14%);
+  }
+
+  /* Visible keyboard focus everywhere — accessibility floor */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .glass {
+    background-color: var(--color-surface-glass);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes trace-draw {
+  0% { stroke-dashoffset: 1200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes trace-glow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}

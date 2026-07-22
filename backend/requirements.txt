@@ -1,0 +1,29 @@
+# --- Core API ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# --- Database ---
+sqlalchemy==2.0.36
+asyncpg==0.30.0
+# aiosqlite==0.20.0  # uncomment for local dev with DATABASE_URL=sqlite+aiosqlite:///./dev.db
+
+# --- Document Intelligence: OCR ---
+# Requires system packages: tesseract-ocr, poppler-utils (for pdftoppm)
+#   Debian/Ubuntu: apt-get install tesseract-ocr poppler-utils
+#   macOS:         brew install tesseract poppler
+pytesseract==0.3.13
+pypdf==5.9.0
+Pillow==11.1.0
+
+# --- Vector Search + AI ---
+qdrant-client==1.12.1
+langgraph==0.2.62
+google-generativeai==0.8.3
+
+# --- Knowledge Graph (optional — falls back to a Postgres-derived graph if absent) ---
+neo4j==5.27.0
+
+# --- File uploads ---
+python-multipart==0.0.20
