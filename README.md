@@ -90,7 +90,7 @@ Every "AI-powered" claim below is independently verifiable in the code, not asse
 ---
 
 ## Architecture
-'''
+
 industrialbrain/
 ├── frontend/ Next.js 15 · React 19 · TypeScript
 │ ├── app/
@@ -114,7 +114,7 @@ industrialbrain/
 ├── graph/ Neo4j client + Postgres-derived fallback
 └── agents/ LangGraph StateGraph — real multi-agent
 orchestration for the Copilot pipeline
-'''
+
 ### Design Principle: Zero-Config Resilience
 
 Every external dependency degrades gracefully rather than blocking the demo:
